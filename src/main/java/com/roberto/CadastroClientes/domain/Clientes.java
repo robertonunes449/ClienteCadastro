@@ -1,7 +1,21 @@
 package com.roberto.CadastroClientes.domain;
 
-public class Clientes {
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
+public class Clientes implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
 	private String email;
@@ -19,11 +33,13 @@ public class Clientes {
 	private String contato;
 	private String uf;
 	
+	@ManyToOne
+	@JoinColumn(name="colaboradores_id")
 	private Colaboradores colaboradores;
 
 	public Clientes() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public Clientes(Integer id, String nome, String email, String nascimento, String profissao, String calcado,

@@ -1,11 +1,24 @@
 package com.roberto.CadastroClientes.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
-public class Colaboradores {
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+
+@Entity
+public class Colaboradores implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
 	private String email;
@@ -21,6 +34,7 @@ public class Colaboradores {
 	private String celular;
 	private String uf;
 	
+	@OneToMany(mappedBy = "Colaboradores")
 	private List<Clientes> clientes = new ArrayList<>();
 
 	@Override
@@ -50,7 +64,7 @@ public class Colaboradores {
 
 	public Colaboradores() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public Colaboradores(Integer id, String nome, String email, String nascimento, String funcao, String logradouro,
